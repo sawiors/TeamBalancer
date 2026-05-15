@@ -11,9 +11,10 @@ ENV/
 
 # Build artifacts
 build/
+dist/
 
-# Distributables: ignore binaries but allow user guide
-**/dist/*
+# PyInstaller spec file
+*.spec
 
 # Ignore test directories but allow test files
 **/tests/
