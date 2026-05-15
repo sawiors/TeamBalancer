@@ -13,8 +13,11 @@ ENV/
 build/
 
 # Distributables: ignore binaries but allow user guide
-/dist/*
-!/dist/README.txt
+**/dist/*
+
+# Ignore test directories but allow test files
+**/tests/
+**/test/
 
 # Test and coverage outputs
 .pytest_cache/
