@@ -46,19 +46,19 @@ VALORANT_POSITIONS = ["타격대", "척후대", "감시자", "전략가"]
 
 def valorant_tier_to_score(tier_text: str) -> int:
     if tier_text == "언랭크":
-        return -1
+        return 0
     if tier_text == "레디언트":
-        return 3 * VALORANT_RANKS.index("레디언트")
+        return 3 * VALORANT_RANKS.index("레디언트") + 1
     rank_name = tier_text[:-1]
     tier_num = int(tier_text[-1])
     rank_index = VALORANT_RANKS.index(rank_name)
-    return 3 * rank_index + tier_num - 1
+    return 3 * rank_index + tier_num
 
 
 def valorant_score_to_tier_text(score: int) -> str:
-    if score <= 0:
-        return "아이언1"
-    if score >= 24:
+    if score < 1:
+        return "언랭크"
+    if score > 25:
         return "레디언트"
     return VALORANT_TIER_OPTIONS[score]
 

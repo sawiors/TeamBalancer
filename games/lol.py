@@ -53,19 +53,19 @@ LEAGUE_OF_LEGENDS_POSITIONS = ["탑", "정글", "미드", "원딜", "서폿"]
 
 def league_of_legends_tier_to_score(tier_text: str) -> int:
     if tier_text == "언랭크":
-        return -1
+        return 0
     if tier_text in {"마스터", "그랜드마스터", "챌린저"}:
-        return 4 * (LEAGUE_OF_LEGENDS_RANKS.index(tier_text) + 1)
+        return 4 * (LEAGUE_OF_LEGENDS_RANKS.index(tier_text) + 1) + 1
     rank_name = tier_text[:-1]
     tier_num = int(tier_text[-1])
     rank_index = LEAGUE_OF_LEGENDS_RANKS.index(rank_name) + 1
-    return 4 * rank_index - tier_num
+    return 4 * rank_index - tier_num + 1
 
 
 def league_of_legends_score_to_tier_text(score: int) -> str:
-    if score <= 0:
-        return "아이언4"
-    if score >= 40:
+    if score < 1:
+        return "언랭크"
+    if score > 40:
         return "챌린저"
     ordered_scores = [league_of_legends_tier_to_score(t) for t in LEAGUE_OF_LEGENDS_TIER_OPTIONS]
     best_tier, best_dist = LEAGUE_OF_LEGENDS_TIER_OPTIONS[0], None
